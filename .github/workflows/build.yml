@@ -27,6 +27,17 @@ jobs:
         run: |
           pyinstaller --noconfirm --windowed --icon=icon.icns test.py
 
+      - name: List dist directory contents
+        run: |
+          ls -la dist/
+
+      - name: Verify app exists
+        run: |
+          if [ ! -f "dist/test.app" ]; then
+            echo "dist/test.app does not exist"
+            exit 1
+          fi
+
       - name: Install create-dmg
         run: |
           brew install create-dmg
