@@ -80,7 +80,6 @@ def process_file(input_file):
 
     return output_file
 
-# 创建 tkinter GUI
 class FileProcessorApp:
     def __init__(self, root):
         self.root = root
