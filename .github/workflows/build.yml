@@ -33,7 +33,7 @@ jobs:
 
       - name: Verify app exists
         run: |
-          if [ ! -f "dist/test.app" ]; then
+          if [ ! -d "dist/test.app" ]; then
             echo "dist/test.app does not exist"
             exit 1
           fi
