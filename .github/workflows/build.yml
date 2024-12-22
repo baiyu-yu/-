@@ -25,13 +25,29 @@ jobs:
 
       - name: Build macOS app
         run: |
-          pyinstaller --onefile --windowed --icon=icon.icns test.py
+          pyinstaller --noconfirm --windowed --icon=icon.icns test.py
 
-      - name: Upload macOS artifact
+      - name: Install create-dmg
+        run: |
+          brew install create-dmg
+
+      - name: Create dmg file
+        run: |
+          create-dmg \
+            --volname "Test App" \
+            --window-pos 200 120 \
+            --window-size 500 300 \
+            --icon-size 100 \
+            --icon "test.app" 125 125 \
+            --hide-extension "test.app" \
+            --app-drop-link 375 125 \
+            dist/test.app dist
+
+      - name: Upload macOS dmg artifact
         uses: actions/upload-artifact@v3
         with:
-          name: macOS-app
-          path: dist/test.app
+          name: macOS-dmg
+          path: dist/Test\ App.dmg
 
   build-windows:
     runs-on: windows-latest
