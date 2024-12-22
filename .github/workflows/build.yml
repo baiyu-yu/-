@@ -41,13 +41,14 @@ jobs:
             --icon "test.app" 125 125 \
             --hide-extension "test.app" \
             --app-drop-link 375 125 \
-            dist/test.app dist
+            dist/test.app \
+            dist/TestApp.dmg
 
       - name: Upload macOS dmg artifact
         uses: actions/upload-artifact@v3
         with:
           name: macOS-dmg
-          path: dist/Test\ App.dmg
+          path: dist/TestApp.dmg
 
   build-windows:
     runs-on: windows-latest
